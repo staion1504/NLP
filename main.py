@@ -295,8 +295,7 @@ def stopword(text):
     return str
 
 
-def lemmatize(word):
-    lemmatized_word = word
+def lemmatize(words):
     irregular_words = {
         "running": "run",
         "flies": "fly",
@@ -347,11 +346,13 @@ def lemmatize(word):
         "improvement": "improve",
         "learning": "learn"
     }
-
-    if lemmatized_word in irregular_words:
-        return irregular_words[lemmatized_word]
-
-    return lemmatized_word
+    ans = []
+    for word in words.split():
+        if word in irregular_words:
+            ans.append(irregular_words[word])
+        else:
+            ans.append(word)
+    return ' '.join(ans)
 
 
 def stemming(text):
@@ -420,7 +421,8 @@ def stemming(text):
 
 def preprocess_text(text):
 
-    text = "Hi i'm NLP student  ,i don't like chocolates <br> Visit this sITe tO gEt CoUpOnS<a href='/'>"
+    # text = "Hi i'm NLP student  ,i don't like chocolates <br> Visit this sITe tO gEt CoUpOnS<a href='/'>"
+    text = "products customers"
 
     text = transform_contractions(text)
 
@@ -432,7 +434,7 @@ def preprocess_text(text):
 
     text = lemmatize(text)
 
-    text = stemming(text)
+    # text = stemming(text)
 
     print(text)
 
@@ -442,21 +444,21 @@ def preprocess_text(text):
 preprocess_text("")
 
 
-with open('./../../Reviews.csv', 'r', newline='') as reviewsFile:
-    reviewsLines = csv.reader(reviewsFile)
+# with open('./../../Reviews.csv', 'r', newline='') as reviewsFile:
+#     reviewsLines = csv.reader(reviewsFile)
 
-    for index, line in enumerate(reviewsLines):
-        if index == 0:
-            continue
-        elif index == 5:
-            break
-        else:
-            linex = line[9]
-            print("--------------------------------------------------")
-            print("Original text:", linex)
+#     for index, line in enumerate(reviewsLines):
+#         if index == 0:
+#             continue
+#         elif index == 5:
+#             break
+#         else:
+#             linex = line[9]
+#             print("--------------------------------------------------")
+#             print("Original text:", linex)
 
-            print("-------------------------------------------------")
-            print("Cleaned text:", preprocess_text(linex))
-            print("-------------------------------------------------")
-            print(" ")
-            print("  ")
+#             print("-------------------------------------------------")
+#             print("Cleaned text:", preprocess_text(linex))
+#             print("-------------------------------------------------")
+#             print(" ")
+#             print("  ")
