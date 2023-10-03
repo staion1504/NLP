@@ -347,7 +347,8 @@ def lemmatize(words):
         "learning": "learn"
     }
     ans = []
-    for word in words.split():
+    arr = words.split()
+    for word in arr:
         if word in irregular_words:
             ans.append(irregular_words[word])
         else:
