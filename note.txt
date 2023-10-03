@@ -1,0 +1,22 @@
+Dataset Kaggle + grand_challenge.org (5_58_261)
+
+Raw Dataset clean -> dropped unneccessary columns/attributes and ignored rows with null values
+
+
+transform_contractions
+
+Dataset Clean using Regex
+     Removing external links
+     Removing HTML tags
+     Removing Images links
+     Removing special Characters like punctuations,exclamations Characters
+
+normalizing text
+
+stopword removal
+
+tokenize
+
+lemmatize
+
+stemming
