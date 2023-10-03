@@ -424,7 +424,7 @@ def stemming(text):
 def preprocess_text(text):
 
     # text = "Hi i'm NLP student  ,i don't like chocolates <br> Visit this sITe tO gEt CoUpOnS<a href='/'>"
-    text = "products customers"
+    # text = "products customers"
 
     text = transform_contractions(text)
 
@@ -438,29 +438,31 @@ def preprocess_text(text):
 
     # text = stemming(text)
 
-    print(text)
+    # print(text)
 
     return text
 
 
-preprocess_text("")
 
 
-# with open('./../../Reviews.csv', 'r', newline='') as reviewsFile:
-#     reviewsLines = csv.reader(reviewsFile)
+with open('./Reviews.csv', 'r', newline='') as reviewsFile:
+    reviewsLines = csv.reader(reviewsFile)
 
-#     for index, line in enumerate(reviewsLines):
-#         if index == 0:
-#             continue
-#         elif index == 5:
-#             break
-#         else:
-#             linex = line[9]
-#             print("--------------------------------------------------")
-#             print("Original text:", linex)
+    for index, line in enumerate(reviewsLines):
+        if index == 0:
+            continue
+        elif index == 100000:
+            break
+        else:
+            linex = line[4]
+            # print("--------------------------------------------------")
+            # print("Original text:", linex)
 
-#             print("-------------------------------------------------")
-#             print("Cleaned text:", preprocess_text(linex))
-#             print("-------------------------------------------------")
-#             print(" ")
-#             print("  ")
+            # print("-------------------------------------------------")
+            with open('./cleaned_text.txt', 'a') as file:
+                file.write(preprocess_text(linex)+'\n')
+                file.write("-------------------------------------------------"+'\n')
+            # print("Cleaned text:", preprocess_text(linex))
+            # print("-------------------------------------------------")
+            # print(" ")
+            # print("  ")
