@@ -1030,6 +1030,7 @@ def disambiguate_text_without_preprocessing(text):
     return disambiguated_text
 
 
+
 def generate_ngrams(text, n=2):
     words = text.split()
     ngrams_list = []
@@ -1071,7 +1072,7 @@ def text_summarizer(text, num_bigrams=10, disambiguation_function=None):
     if disambiguation_function:
         disambiguated_text = disambiguation_function(text)
     else:
-        disambiguated_text = preprocess_and_disambiguate_before(text)
+        disambiguated_text = preprocess_text(text)
     
     bigrams = generate_bigrams(disambiguated_text, n=2)
     bigram_freq = count_bigram_frequency(bigrams)
@@ -1085,10 +1086,13 @@ def print_all_summaries(text, num_bigrams=10):
     print(text_summarizer(text, num_bigrams, disambiguation_function=preprocess_and_disambiguate_before))
     print("\nSummary After Disambiguating After Preprocessing:")
     print(text_summarizer(text, num_bigrams, disambiguation_function=preprocess_and_disambiguate_after))
+    print("\nSummary Without Disambiguation")
+    print(text_summarizer(text, num_bigrams, disambiguation_function=None))
+    print("\n")
 
-text = "Accounting for the dead in this way seems obscene. Each tally mark is a life snuffed out. But there is an important reason to state it clearly: because states capable of immense violence do not. The Israeli government possesses such violent capabilities, and its leaders speak in openly genocidal terms. Their aims of annexation and expulsion predate last weekend’s Hamas assault, which they now use as yet another justification for these goals.In the United States, we are intimately familiar with how the shock of mass civilian death can feed deadly political ambitions. Or at least, we should be. Almost three thousand people died in the attacks on 9/11; millions died in the wars that the U.S. government subsequently unleashed in the Middle East and Central Asia. To the American government, the millions matter far less than the thousands. For the blood-soaked nationalists of the Republican Party, this is no surprise. For Democrats who speak a pseudo-universalist language, it is damning.Now, as Palestinians in Gaza brace themselves for violence on an even grander scale, elected leaders across the United States are in nearly complete lockstep offering full support for whatever military operations the Israeli government is about to undertake. To Palestinians, the message is clear: your lives matter less, if they matter at all. This consensus is only being challenged on the margins of our political discourse. But it is imperative to continue to challenge it.";
+text = "I have bought several of the Vitality canned dog food products and have found them all to be of good quality. The product looks more like a stew than a processed meat and it smells better. My Labrador is finicky and she appreciates this product better than  most.";
 
-print_all_summaries(text, num_bigrams=14)
+print_all_summaries(text, num_bigrams=5)
 
 
 # main file
